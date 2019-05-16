@@ -1,0 +1,41 @@
+<div class="container">
+    <h3 mat-dialog-title>Add new Device</h3>
+  
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #input class="form-control" placeholder="Vendor" [(ngModel)]="data.vendor" name="vendor" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form">
+        <mat-form-field color="accent">
+            <mat-checkbox class="form-control" [(ngModel)]="data.status" name="status">Online</mat-checkbox>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+          <mat-form-field color="accent">
+              <input matInput [matDatepicker]="picker" #inputstate class="form-control" placeholder="Date Created" [(ngModel)]="data.dateCreated" name="dateCreated">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="accent">
+                <mat-select class="form-control" name="gateway" [(ngModel)]="data.gateway">
+                    <mat-option *ngFor="let gateway of gateways" [value]="gateway.uid">{{ gateway.name }}</mat-option>
+                  </mat-select>
+              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>  
+  
+      <div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="add()">Save</button>
+        <button mat-button (click)="cancel()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+  </div>
