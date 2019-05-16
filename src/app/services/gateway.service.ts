@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Gateway} from '../models/gateway';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-
+import {environment} from '../../environments/environment';
 @Injectable()
 export class GatewayService {
-  private readonly API_URL = 'http://localhost:3002/api/v1/gateways/';
+  private readonly API_URL = environment+'/gateways/';
 
   dataChange: BehaviorSubject<Gateway[]> = new BehaviorSubject<Gateway[]>([]);
   dialogData: any;

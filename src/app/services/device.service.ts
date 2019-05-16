@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Device} from '../models/device';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class DeviceService {
-  private readonly API_URL = 'http://localhost:3002/api/v1/devices/';
+  private readonly API_URL = environment.api+ '/devices/';
 
   dataChange: BehaviorSubject<Device[]> = new BehaviorSubject<Device[]>([]);
   dialogData: any;
